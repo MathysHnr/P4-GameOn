@@ -57,10 +57,11 @@
           <span class="close close-btn"></span>
           <div class="modal-body">
             <form
+            id="form"
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+            
             >
               <div
                 class="formData">
@@ -68,11 +69,12 @@
                 <input
                   class="text-control"
                   type="text"
-                  
+                 
                   id="first"
                   name="first"
                   minlength="2"
-                /><br>
+                />
+              <br>
               </div>
               <div
                 class="formData">
@@ -83,7 +85,8 @@
                   
                   id="last"
                   name="last"
-                /><br>
+                />
+              <br>
               </div>
               <div
                 class="formData">
@@ -94,7 +97,8 @@
                   id="email"
                   
                   name="email"
-                /><br>
+                />
+              <br>
               </div>
               <div
                 class="formData">
@@ -105,7 +109,8 @@
                   
                   id="birthdate"
                   name="birthdate"
-                /><br>
+                />
+              <br>
               </div>
               <div
                 class="formData">
@@ -195,6 +200,7 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+                
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
@@ -210,6 +216,22 @@
                 value="C'est parti"
               />
             </form>
+          </div>
+          <div class="modal-valid" id="modalValid">
+            <div class="success">
+              <h2 class="success-headline">Inscription réussie !</h2>
+              <p class="success-text">
+                Merci pour votre inscription. Vous allez recevoir un e-mail de
+                confirmation.
+              </p>
+              <input
+                class="btn-submitvalid"
+                type="submit"
+                class="button"
+                value="C'est parti"
+                id="closeValidBtn"
+              />
+            </div>
           </div>
         </div>
       </div>
