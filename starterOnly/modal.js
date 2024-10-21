@@ -23,24 +23,33 @@ closeValidBtn.addEventListener("click", closeModalValid);
 
 // launch modal form
 function launchModal() {
-  // Réinitialiser l'état du formulaire avant de l'ouvrir
-  form.reset(); // Réinitialiser le formulaire
-  form.style.display = "block"; // Afficher le formulaire
-  modalValid.style.display = "none"; // S'assurer que la modal de confirmation est cachée
-  modalbg.style.display = "block"; // Afficher la modal principale
+  resetModal();
+  modalbg.style.display = "block";
 }
 
 function closeModal() {
-  modalbg.style.display = "none"; // Masquer la modal principale
-  form.reset();
+  modalbg.style.display = "none";
+  resetModal();
 }
 
 function closeModalValid() {
-  modalValid.style.display = "none"; // Masquer la modal de confirmation
+  modalValid.style.display = "none";
+  modalbg.style.display = "none";
+  resetModal();
+}
+
+function resetModal() {
+  form.reset();
+  form.style.display = "block";
+  modalValid.style.display = "none";
   document.querySelector(".modal-body").style.display = "block";
 
-  modalbg.style.display = "none"; // Masquer le fond de la modal
-  form.reset();
+  // Réinitialiser tous les messages d'erreur
+  const formDataElements = document.querySelectorAll(".formData");
+  formDataElements.forEach((element) => {
+    element.removeAttribute("data-error");
+    element.removeAttribute("data-error-visible");
+  });
 }
 
 form.addEventListener("submit", function (e) {
@@ -71,6 +80,8 @@ function validate() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const checkBox = document.getElementById("checkbox1");
   const birthDate = document.getElementById("birthdate");
+  const quantity = document.getElementById("quantity");
+  const tournamentRadios = document.querySelectorAll('input[name="location"]');
 
   let isValidForm = true;
 
@@ -118,6 +129,31 @@ function validate() {
     isValidForm = false;
   } else {
     isValid(birthDate);
+  }
+
+  if (!quantity.value || quantity.value < 0 || quantity.value > 99) {
+    isInvalid(
+      quantity,
+      "Le nombre de tournois doit être compris entre 0 et 99."
+    );
+    isValidForm = false;
+  } else {
+    isValid(quantity);
+  }
+
+  // Validation de la sélection d'un tournoi
+  let tournamentSelected = false;
+  tournamentRadios.forEach((radio) => {
+    if (radio.checked) {
+      tournamentSelected = true;
+    }
+  });
+
+  if (!tournamentSelected) {
+    isInvalid(tournamentRadios[0], "Vous devez sélectionner un tournoi.");
+    isValidForm = false;
+  } else {
+    isValid(tournamentRadios[0]);
   }
 
   return isValidForm;

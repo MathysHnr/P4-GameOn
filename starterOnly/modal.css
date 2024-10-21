@@ -490,6 +490,8 @@ footer {
     background: #fff;
     color: #000;
     padding: 20px;
+    min-width: auto;
+
   }
   .hero-content::after {
     content: unset;
@@ -503,7 +505,7 @@ footer {
   }
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   .hero-img img {
     border-radius: 10px;
@@ -543,6 +545,8 @@ footer {
 }
 
 .success-text {
+  font-size: 2rem; /* Augmenter la taille de la police */
+  text-align: center; /* Centrer le texte */
   padding-bottom: 30px;
   display: flex;
   justify-content: center;
@@ -556,17 +560,48 @@ footer {
 .modal-valid {
   padding: 15px 8%;
   margin: 15px auto;
-  height: 850px;
+  height: 850px; /* Conserver la hauteur d'origine */
+  position: relative; /* Pour le positionnement absolu des éléments enfants */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre le contenu verticalement */
+  align-items: center; /* Centre le contenu horizontalement */
+}
+
+.success {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-text {
+  font-size: 2rem; /* Taille de la police */
+  text-align: center; /* Centrer le texte */
 }
 
 .btn-submitvalid {
   background: #fe142f;
   display: block;
-  margin: 0 auto;
   border-radius: 7px;
   font-size: 1rem;
   padding: 12px 82px;
   color: #fff;
   cursor: pointer;
   border: 0;
+  position: absolute;
+  bottom: 20px; /* Distance du bas de la modal */
+  left: 50%;
+  transform: translateX(-50%); /* Centre horizontalement le bouton */
 }
+
+@media screen and (max-width: 460px) {
+  .hero-headline {
+      font-size: 3.5rem;
+      white-space: normal;
+  }
